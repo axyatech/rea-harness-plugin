@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Package artifacts
+*.tgz
+
+# Local configuration and environment
+.env
+.env.*
+.dsh/
+cordis.local.yml
+
+# Verification artifacts (screenshots, recordings) stay out of the repository
+screenshots/
+rea-*.png
+*.log
+
+# Editor and OS noise
+.DS_Store
+.vscode/
+.idea/
+coverage/

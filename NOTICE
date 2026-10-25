@@ -1,0 +1,17 @@
+# Third-party notices
+
+## REA (Reverse Engineer Anything)
+
+`skills/reverse-engineer-anything/` is copied, unmodified, from the
+`rea-agents` npm package 6.8.0 published by morluto for the project
+<https://github.com/morluto/rea>. REA is licensed under the MIT License; the
+full text is reproduced in `LICENSE-REA`.
+
+REA itself is a separate project. This plugin does not vendor REA's runtime:
+the MCP row downloads `rea-agents` with `npx`, and the skill provider prefers
+the skill shipped inside an installed REA package over the bundled copy when
+one is discoverable.
+
+The plugin name, the panel artwork (`icon.svg`, the inline sidebar mark in
+`client.js`), and all other files in this package are original work licensed
+under the repository's MIT License (`LICENSE`).

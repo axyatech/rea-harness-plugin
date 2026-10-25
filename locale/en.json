@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "REA — Reverse Engineer Anything",
+    "description": "Registers the REA MCP server, supplies its workflow skill, and adds a live REA panel to the left sidebar."
+  }
+}

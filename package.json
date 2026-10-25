@@ -1,0 +1,55 @@
+{
+  "name": "dsh-plugin-rea",
+  "version": "1.0.0",
+  "private": true,
+  "description": "REA (Reverse Engineer Anything) for DeepSeek Harness: registers the REA MCP server, provides its workflow skill, and adds a REA panel to the left sidebar.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "rea",
+    "reverse-engineering",
+    "mcp"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "skills/**",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE",
+    "LICENSE-REA",
+    "NOTICE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axyatech/rea-harness-plugin.git"
+  },
+  "homepage": "https://github.com/axyatech/rea-harness-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/axyatech/rea-harness-plugin/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "license": "MIT"
+}

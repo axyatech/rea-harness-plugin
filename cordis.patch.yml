@@ -1,0 +1,29 @@
+# REA (Reverse Engineer Anything) for DeepSeek Harness.
+#
+# Two rows: the REA MCP server, and this bundle's Host half (status endpoint +
+# workflow skill). The browser half comes from the package's `dsh.client`
+# section and adds the REA entry to the left sidebar.
+#
+# The launcher deliberately uses npx so a fresh install needs no manual setup:
+# the first connection downloads the pinned REA package into npm's cache.
+# Override this row in your own cordis.patch.yml to pin another version or to
+# pass machine-specific analysis-engine paths (see README.md).
+- insert:
+    - id: mcp-rea
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: rea
+        transport: stdio
+        command: npx
+        args:
+          - '-y'
+          - 'rea-agents@6.8.0'
+          - 'mcp'
+        toolCallTimeoutMs: 600000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          maxAttempts: 5
+    - id: rea-sidebar
+      name: 'dsh-plugin-rea'
+      config: {}
