@@ -7,7 +7,9 @@ All notable changes to **REA for DeepSeek Harness** are documented here.
 ### Added
 
 - Self-hosted Discover index (`market/index.json`) in the DSH plugin market
-  format 1, pinned to an immutable commit.
+  format 1, resolving to an immutable npm version.
+- npm publication of `@axyatech/dsh-plugin-rea@1.1.0`, with an npm version badge
+  and npm install option in the README.
 - `engines.dsh` compatibility guard for DeepSeek Harness 0.2.x.
 - Cross-platform Host test suite covering the status route, loopback guard,
   home-path redaction, doctor parsing, and the workflow skill provider.
@@ -32,6 +34,8 @@ All notable changes to **REA for DeepSeek Harness** are documented here.
   payload.
 - Documented restarting Harness after a package rename because the browser
   boot graph can cache the previous client module id.
+- The release workflow now skips publishing when the version already exists on
+  the registry, so re-tagging a released commit stays green.
 
 ### Security
 

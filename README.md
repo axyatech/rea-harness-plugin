@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/axyatech/rea-harness-plugin/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/axyatech/rea-harness-plugin/actions/workflows/ci.yml/badge.svg?branch=main" /></a>
+  <a href="https://www.npmjs.com/package/@axyatech/dsh-plugin-rea"><img alt="npm" src="https://img.shields.io/npm/v/@axyatech/dsh-plugin-rea.svg" /></a>
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" />
   <img alt="DSH 0.2.x" src="https://img.shields.io/badge/DSH-0.2.x-4f46e5" />
   <img alt="REA 6.8.0" src="https://img.shields.io/badge/REA-6.8.0-2f9e8f" />
@@ -52,7 +53,29 @@ REA gives an agent tools to inspect binaries, applications, packages, and pages 
 
 ## Install
 
-### Option A — Discover (recommended)
+### Option A — npm (recommended)
+
+The plugin is published as **`@axyatech/dsh-plugin-rea`**.
+
+**Settings → Plugins → Add plugin** → paste the package name:
+
+```text
+@axyatech/dsh-plugin-rea
+```
+
+Pin a release when you need reproducibility:
+
+```text
+@axyatech/dsh-plugin-rea@1.1.0
+```
+
+From an agent or the `plugin_manager` tool:
+
+```text
+plugin_manager action=install_bundle target=@axyatech/dsh-plugin-rea
+```
+
+### Option B — Discover
 
 Do this once:
 
@@ -66,9 +89,9 @@ https://raw.githubusercontent.com/axyatech/rea-harness-plugin/main/market/index.
 
 REA for DeepSeek Harness then appears as a searchable market entry, with the version, compatibility, and install target read from the index. Select it and install.
 
-> DSH does not ship an official third-party market; Discover lists the indexes you add. This repository publishes its own format-1 index, so no registry account or npm publication is required.
+> DSH does not ship an official third-party market; Discover lists the indexes you add. This repository publishes its own format-1 index, which resolves to the npm release.
 
-### Option B — Plugins page, Git repository
+### Option C — Git repository
 
 **Settings → Plugins → Add plugin** → choose the Git repository option → paste:
 
@@ -76,7 +99,7 @@ REA for DeepSeek Harness then appears as a searchable market entry, with the ver
 https://github.com/axyatech/rea-harness-plugin.git
 ```
 
-### Option C — Agent or `plugin_manager` tool
+Or install the same Git source from an agent:
 
 ```text
 plugin_manager action=install_bundle target=https://github.com/axyatech/rea-harness-plugin.git
@@ -93,7 +116,7 @@ plugin_manager action=install_bundle target=/absolute/path/to/rea-harness-plugin
 
 The bundle is applied immediately. Refresh the Harness page once; new sessions pick up the workflow skill. If the MCP server reports zero tools on first open, wait for the `npx` download and press **Refresh**.
 
-The npm package is prepared as **`@axyatech/dsh-plugin-rea`** but is not published yet; Git and Discover installs are fully supported today. See [Distribution](#distribution-and-catalog).
+The current npm release is **`@axyatech/dsh-plugin-rea@1.1.0`**; see [Distribution](#distribution-and-catalog) for release and provenance details.
 
 ## Quick start
 
@@ -171,6 +194,7 @@ A few common entry points:
 | Surface | Supported | Status |
 | --- | --- | --- |
 | **DSH** | `0.2.x` (`engines.dsh: >=0.2.1-rc.3 <0.3.0-0`) | Runtime-verified on `0.2.1-rc.3` (macOS) |
+| **npm** | `@axyatech/dsh-plugin-rea@1.1.0` | Published, MIT, public access |
 | **Node.js** | REA 6.8.0 engines: `^22.23.4 \|\| ^24.22.1 \|\| >=26.12.1` | Required for the `npx` MCP launch |
 | **macOS** | macOS 12+ | Runtime-verified (arm64, Web GUI) |
 | **Linux** | CI-tested Host logic | Full DSH + REA runtime not yet verified; REA needs procps |
@@ -280,32 +304,34 @@ DSH's Discover tab has **no official third-party catalog**: it shows only the fo
 market/index.json
 ```
 
-The index is validated against DSH's `dsh-plugin-market-index` format and pins each release to an immutable Git commit. Adding the raw index URL once makes the plugin discoverable and installable from Discover. The index entry also carries the `engines.dsh` compatibility range, so incompatible Harness versions are marked before installation.
+The index is validated against DSH's `dsh-plugin-market-index` format and pins each release to an immutable npm version. Adding the raw index URL once makes the plugin discoverable and installable from Discover. The index entry also carries the `engines.dsh` compatibility range, so incompatible Harness versions are marked before installation.
 
-The package is prepared for npm as **`@axyatech/dsh-plugin-rea`** (`private: false`, `publishConfig.access: public`, version `1.1.0`). It is not published yet: the `@axyatech` scope must exist on npm and the publisher must be authenticated. The unscoped `dsh-plugin-rea` name belongs to another publisher and is deliberately not used.
+The plugin is published to npm as **`@axyatech/dsh-plugin-rea`** (current release: **`1.1.0`**, MIT, `private: false`, public access). Verify the published version:
+
+```bash
+npm view @axyatech/dsh-plugin-rea version
+```
+
+The unscoped `dsh-plugin-rea` name belongs to another publisher and is deliberately not used.
 
 ### Publishing a release
 
-One-time setup:
+Maintainer flow:
 
-1. Create an npm account, then create the **`axyatech`** organization at
-   [npmjs.com/org/create](https://www.npmjs.com/org/create) (free for public
-   packages). A scope that does not exist cannot be published to.
-2. Authenticate the machine that publishes:
+1. Bump `package.json` and `CHANGELOG.md`; run `npm test`.
+2. Authenticate and publish:
 
    ```bash
    npm login
    npm whoami
-   ```
-
-3. Publish:
-
-   ```bash
    npm publish --access public
    ```
 
-`prepublishOnly` runs the test suite first. The package name, version, license,
-repository, and `files` allowlist are already correct.
+3. Update `market/index.json` to the new version and `publishTimestamp`, then
+   commit and push.
+
+`prepublishOnly` runs the test suite before the tarball is built. The package
+name, version, license, repository, and `files` allowlist are already correct.
 
 ### Tag-driven publishing
 
@@ -317,20 +343,13 @@ git tag v1.1.0
 git push origin v1.1.0
 ```
 
-Before the first run, both of these must be true:
-
-1. The **`@axyatech` scope exists** on npm (create the organization at
-   [npmjs.com/org/create](https://www.npmjs.com/org/create)). A token alone
-   cannot create a scope; publishing to a missing scope fails with `404 Scope
-   not found`.
-2. An npm **automation** token (or a granular token with publish rights for
-   `@axyatech`) is stored as the `NPM_TOKEN` **repository secret** under
-   **Settings → Secrets and variables → Actions**.
-
-The workflow checks that the tag matches `package.json`'s version, runs the
-tests, and publishes with `--access public --provenance`. If the secret is
-added after a failed run, re-run the failed **Release** workflow from the
-Actions tab; the existing tag does not need to be recreated.
+The workflow checks that the tag matches `package.json`'s version, then queries
+the registry. If that version is already published, it skips the publish step
+and finishes green, so tagging an already-released commit is safe. For a new
+version it requires `NPM_TOKEN` (an npm automation token, or a granular token
+with publish rights for `@axyatech`) and publishes with
+`--access public --provenance`. Add the secret under
+**Settings → Secrets and variables → Actions**.
 
 ## Roadmap
 
@@ -340,7 +359,7 @@ Actions tab; the existing tag does not need to be recreated.
 - [x] Self-hosted Discover index
 - [x] Sanitized panel and tool-catalog previews
 - [x] Loopback-only, home-redacted status route
-- [ ] npm publication (`@axyatech/dsh-plugin-rea`)
+- [x] npm publication (`@axyatech/dsh-plugin-rea@1.1.0`)
 - [ ] Runtime verification on Linux and Windows with DSH
 - [ ] Replace the previews with signed live screenshots
 

@@ -18,9 +18,7 @@ test('Discover index matches the package release', async () => {
 
   const release = entry.versions.find((version) => version.version === manifest.version)
   assert.ok(release, 'the index lists the current version')
-  assert.match(release.source.commit, /^[0-9a-f]{40}$/)
-  assert.equal(release.source.type, 'git')
-  assert.equal(release.source.url, 'https://github.com/axyatech/rea-harness-plugin.git')
+  assert.equal(release.source.type, 'npm')
   assert.equal(release.engines.dsh, manifest.engines.dsh)
 
   const icon = await readFile(new URL('../market/icon.svg', import.meta.url), 'utf8')

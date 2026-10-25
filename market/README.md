@@ -9,16 +9,16 @@ https://raw.githubusercontent.com/axyatech/rea-harness-plugin/main/market/index.
 ```
 
 The index is validated with DSH's `@deepseek-ai/dsh-plugin-market-index`
-validator. Each release points at an immutable commit, so the install target
-cannot drift when `main` moves:
+validator. Each release points at an immutable npm version, so the install
+target cannot drift when `main` moves:
 
-`git+https://github.com/axyatech/rea-harness-plugin.git#<commit>`
+`@axyatech/dsh-plugin-rea@<version>`
 
 ## Release checklist
 
-1. Update `package.json`'s version and commit the release.
-2. Set `market/index.json`'s `version` and `publishTimestamp`, and set
-   `source.commit` to that release commit's full SHA.
+1. Publish the new version to npm (`npm publish --access public`).
+2. Set `market/index.json`'s `version` and `publishTimestamp`; the source is
+   `{ "type": "npm" }`.
 3. Copy a changed `icon.svg` here as `market/icon.svg`.
 4. Validate:
 
