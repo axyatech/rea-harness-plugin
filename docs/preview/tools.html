@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>REA tool catalog preview</title>
+    <link rel="stylesheet" href="preview.css" />
+  </head>
+  <body>
+    <main class="page tools">
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <h2>Tool catalog</h2>
+            <p class="card-sub">Every REA tool currently visible to the agent.</p>
+          </div>
+          <span class="badge">229</span>
+        </div>
+        <div class="search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.4" stroke="currentColor" stroke-width="1.6" />
+            <path d="m16 16 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          <span>Search 229 tools</span>
+        </div>
+        <div class="tools">
+          <div class="tool"><span class="tool-name">address_name</span><span class="tool-desc">Resolve the primary analyzed name at a code or data address.</span></div>
+          <div class="tool"><span class="tool-name">analyze_function</span><span class="tool-desc">Build a dossier for one native function identified by symbol or address.</span></div>
+          <div class="tool"><span class="tool-name">analyze_javascript_application</span><span class="tool-desc">Statically reconstruct a local JavaScript or Electron application.</span></div>
+          <div class="tool"><span class="tool-name">capture_browser_scenario</span><span class="tool-desc">Run one bounded Playwright browser scenario and return Evidence.</span></div>
+          <div class="tool"><span class="tool-name">inspect_artifact</span><span class="tool-desc">Inspect one artifact and return observations, hypotheses, and next probes.</span></div>
+          <div class="tool"><span class="tool-name">inspect_managed_members</span><span class="tool-desc">Decode PE/CLI members, signatures, and CIL anchors without loading the assembly.</span></div>
+          <div class="tool"><span class="tool-name">open_binary</span><span class="tool-desc">Open a local executable, archive, JavaScript, or analysis database.</span></div>
+          <div class="tool"><span class="tool-name">search_strings</span><span class="tool-desc">Search every provider-reported string with literal or regex matching.</span></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

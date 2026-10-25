@@ -1,7 +1,10 @@
 {
-  "name": "dsh-plugin-rea",
-  "version": "1.0.0",
-  "private": true,
+  "name": "@axyatech/dsh-plugin-rea",
+  "version": "1.1.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "REA (Reverse Engineer Anything) for DeepSeek Harness: registers the REA MCP server, provides its workflow skill, and adds a REA panel to the left sidebar.",
   "keywords": [
     "deepseek-harness",
@@ -9,7 +12,8 @@
     "dsh-plugin",
     "rea",
     "reverse-engineering",
-    "mcp"
+    "mcp",
+    "agent"
   ],
   "type": "module",
   "exports": {
@@ -27,10 +31,19 @@
     "skills/**",
     "README.md",
     "SECURITY.md",
+    "CHANGELOG.md",
     "LICENSE",
     "LICENSE-REA",
     "NOTICE"
   ],
+  "engines": {
+    "dsh": ">=0.2.1-rc.3 <0.3.0-0"
+  },
+  "scripts": {
+    "check": "node --check index.js && node --check client.js",
+    "test": "node --test"
+  },
+  "author": "Axya Tech",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/axyatech/rea-harness-plugin.git"

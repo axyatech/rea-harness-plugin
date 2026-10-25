@@ -7,7 +7,7 @@
  */
 
 window.__ModuleLoader__.load({
-  id: 'dsh-plugin-rea',
+  id: '@axyatech/dsh-plugin-rea',
   factory(require) {
     const React = require('react')
     const h = React.createElement

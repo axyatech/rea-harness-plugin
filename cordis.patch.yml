@@ -25,5 +25,5 @@
           enabled: true
           maxAttempts: 5
     - id: rea-sidebar
-      name: 'dsh-plugin-rea'
+      name: '@axyatech/dsh-plugin-rea'
       config: {}

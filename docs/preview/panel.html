@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>REA panel preview</title>
+    <link rel="stylesheet" href="preview.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div class="brand">
+          <span class="mark">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2.9 20 7.3v9.4L12 21.1 4 16.7V7.3L12 2.9Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+              <path d="M8.2 9.4h7.6M8.2 12h4.9M8.2 14.6h7.6" stroke="#e9eef5" stroke-width="1.4" stroke-linecap="round" />
+              <circle cx="16.6" cy="12" r="1.15" fill="#f0b13f" />
+            </svg>
+          </span>
+          <div>
+            <h1>Reverse Engineer Anything</h1>
+            <p>Analyze shipped binaries, apps, packages, and pages with evidence.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <span class="pill"><span class="dot"></span>Ready</span>
+          <span class="button">Refresh</span>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2>MCP server</h2>
+              <p class="card-sub">The server this plugin registers with DeepSeek Harness.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Connection</div>
+            <div class="value">
+              <div class="inline"><span class="dot green"></span><span><strong>Connected</strong> · 229 tools</span></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Namespace</div>
+            <div class="value mono">mcp__rea__</div>
+          </div>
+          <div class="row">
+            <div class="label">Package</div>
+            <div class="value">
+              <div class="mono">rea-agents 6.8.0</div>
+              <div class="hint">Resolved from the npm cache</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Node.js</div>
+            <div class="value">
+              24.21.0
+              <div class="hint">macOS · arm64</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Audit launcher</div>
+            <div class="value mono">node ~/.npm/_npx/…/scripts/rea.mjs</div>
+          </div>
+          <div class="row">
+            <div class="label">Last checked</div>
+            <div class="value">
+              just now
+              <div class="hint">REA's managed environment</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <h2>Workflow skill</h2>
+              <p class="card-sub">Instructions the agent loads when a task calls for REA.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Skill</div>
+            <div class="value">
+              <div class="inline"><span class="dot green"></span><span><strong>v49</strong></span></div>
+              <div class="hint">reverse-engineer-anything · from the installed package</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Expected version</div>
+            <div class="value">
+              49
+              <div class="hint">Aligned with the server</div>
+            </div>
+          </div>
+          <p class="note">This plugin supplies the workflow so a fresh install needs no separate skill setup.</p>
+        </section>
+      </div>
+
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <h2>Analysis engines</h2>
+            <p class="card-sub">Local tools REA can use, audited by <span class="mono">rea doctor</span>.</p>
+          </div>
+          <span class="button">Copy command</span>
+        </div>
+        <div class="checks">
+          <div class="check">
+            <span class="dot green"></span>
+            <span class="check-name">Hopper</span>
+            <span class="check-detail">/Applications/Hopper Disassembler.app/Contents/MacOS/hopper</span>
+            <span class="badge ok">Ready</span>
+          </div>
+          <div class="check">
+            <span class="dot green"></span>
+            <span class="check-name">Ghidra</span>
+            <span class="check-detail">~/.local/share/rea/tools/ghidra_12.1.4_PUBLIC</span>
+            <span class="badge ok">Ready</span>
+          </div>
+          <div class="check">
+            <span class="dot green"></span>
+            <span class="check-name">JADX</span>
+            <span class="check-detail">JADX MCP bridge JAR validated</span>
+            <span class="badge ok">Ready</span>
+          </div>
+          <div class="check">
+            <span class="dot muted-dot"></span>
+            <span class="check-name">IDA</span>
+            <span class="check-detail">Set REA_IDA_MCP_CONFIG to an upstream IDA MCP registration</span>
+            <span class="badge warn">Not configured</span>
+          </div>
+          <div class="check">
+            <span class="dot muted-dot"></span>
+            <span class="check-name">Kuna</span>
+            <span class="check-detail">Optional caller-supplied Kuna executable</span>
+            <span class="badge warn">Not configured</span>
+          </div>
+        </div>
+        <p class="note">Analysis engines are optional. Static JavaScript, .NET, artifact, and browser analysis work without them.</p>
+      </section>
+    </main>
+  </body>
+</html>

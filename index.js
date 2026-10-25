@@ -134,9 +134,9 @@ async function handleStatus(ctx, state, req, res) {
 }
 
 function sendJson(res, statusCode, body, headOnly = false) {
-  // The payload never needs the account's home directory: redact it once, so
-  // every nested path (REA root, skill, doctor checks, launcher) is safe.
-  const payload = redactHome(JSON.stringify(body))
+  // The payload never needs the account's home directory: redact it before
+  // serialization, so Windows backslashes are handled too.
+  const payload = JSON.stringify(redactValue(body))
   res.statusCode = statusCode
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.setHeader('Cache-Control', 'no-store')
@@ -160,6 +160,18 @@ function redactHome(text) {
   const home = homedir()
   if (typeof home !== 'string' || home.length < 2) return text
   return text.split(home).join('~')
+}
+
+/** Recursively redact every string in a JSON-safe value. */
+function redactValue(value) {
+  if (typeof value === 'string') return redactHome(value)
+  if (Array.isArray(value)) return value.map(redactValue)
+  if (value !== null && typeof value === 'object') {
+    const result = {}
+    for (const [key, member] of Object.entries(value)) result[key] = redactValue(member)
+    return result
+  }
+  return value
 }
 
 async function collectStatus(ctx, state, fresh) {
@@ -741,7 +753,7 @@ function unquote(value) {
 function readOwnPackage() {
   const manifest = readJson(join(HERE, 'package.json'))
   return {
-    name: typeof manifest?.name === 'string' ? manifest.name : 'dsh-plugin-rea',
+    name: typeof manifest?.name === 'string' ? manifest.name : '@axyatech/dsh-plugin-rea',
     version: typeof manifest?.version === 'string' ? manifest.version : '0.0.0',
   }
 }
