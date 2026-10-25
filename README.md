@@ -317,10 +317,20 @@ git tag v1.1.0
 git push origin v1.1.0
 ```
 
-Add an npm **automation** token as the `NPM_TOKEN` secret in the GitHub
-repository settings. The workflow checks that the tag matches
-`package.json`'s version, runs the tests, and publishes with
-`--access public --provenance`.
+Before the first run, both of these must be true:
+
+1. The **`@axyatech` scope exists** on npm (create the organization at
+   [npmjs.com/org/create](https://www.npmjs.com/org/create)). A token alone
+   cannot create a scope; publishing to a missing scope fails with `404 Scope
+   not found`.
+2. An npm **automation** token (or a granular token with publish rights for
+   `@axyatech`) is stored as the `NPM_TOKEN` **repository secret** under
+   **Settings → Secrets and variables → Actions**.
+
+The workflow checks that the tag matches `package.json`'s version, runs the
+tests, and publishes with `--access public --provenance`. If the secret is
+added after a failed run, re-run the failed **Release** workflow from the
+Actions tab; the existing tag does not need to be recreated.
 
 ## Roadmap
 
