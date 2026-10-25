@@ -41,7 +41,8 @@
   },
   "scripts": {
     "check": "node --check index.js && node --check client.js",
-    "test": "node --test"
+    "test": "node --test",
+    "prepublishOnly": "npm test"
   },
   "author": "Axya Tech",
   "repository": {

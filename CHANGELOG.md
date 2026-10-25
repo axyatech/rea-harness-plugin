@@ -16,6 +16,9 @@ All notable changes to **REA for DeepSeek Harness** are documented here.
   the self-contained pages in `docs/preview/`.
 - Professional README with architecture and compatibility documentation.
 - `CHANGELOG.md`.
+- Tag-driven npm release workflow with provenance, a version/tag check, and a
+  `prepublishOnly` test gate.
+- Documented npm account, scope, and token setup for publishing.
 
 ### Changed
 

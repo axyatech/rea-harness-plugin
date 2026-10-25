@@ -282,15 +282,45 @@ market/index.json
 
 The index is validated against DSH's `dsh-plugin-market-index` format and pins each release to an immutable Git commit. Adding the raw index URL once makes the plugin discoverable and installable from Discover. The index entry also carries the `engines.dsh` compatibility range, so incompatible Harness versions are marked before installation.
 
-The package is also publish-ready for npm as **`@axyatech/dsh-plugin-rea`**:
+The package is prepared for npm as **`@axyatech/dsh-plugin-rea`** (`private: false`, `publishConfig.access: public`, version `1.1.0`). It is not published yet: the `@axyatech` scope must exist on npm and the publisher must be authenticated. The unscoped `dsh-plugin-rea` name belongs to another publisher and is deliberately not used.
+
+### Publishing a release
+
+One-time setup:
+
+1. Create an npm account, then create the **`axyatech`** organization at
+   [npmjs.com/org/create](https://www.npmjs.com/org/create) (free for public
+   packages). A scope that does not exist cannot be published to.
+2. Authenticate the machine that publishes:
+
+   ```bash
+   npm login
+   npm whoami
+   ```
+
+3. Publish:
+
+   ```bash
+   npm publish --access public
+   ```
+
+`prepublishOnly` runs the test suite first. The package name, version, license,
+repository, and `files` allowlist are already correct.
+
+### Tag-driven publishing
+
+`.github/workflows/release.yml` publishes on a `v*` tag (or a manual dispatch)
+using npm **provenance** and the `NPM_TOKEN` repository secret:
 
 ```bash
-npm login
-# create or join the @axyatech npm organization
-npm publish
+git tag v1.1.0
+git push origin v1.1.0
 ```
 
-`private` is `false`, `publishConfig.access` is `public`, and the version is `1.1.0`. The unscoped `dsh-plugin-rea` name belongs to another publisher and is deliberately not used.
+Add an npm **automation** token as the `NPM_TOKEN` secret in the GitHub
+repository settings. The workflow checks that the tag matches
+`package.json`'s version, runs the tests, and publishes with
+`--access public --provenance`.
 
 ## Roadmap
 
