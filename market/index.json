@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "title": {
+    "en": "REA for DeepSeek Harness",
+    "zh": "DeepSeek Harness 的 REA"
+  },
+  "description": {
+    "en": "Reverse engineering tools, workflow skill, and a live readiness panel for DeepSeek Harness.",
+    "zh": "为 DeepSeek Harness 提供逆向工程工具、工作流技能与实时状态面板。"
+  },
+  "metadata": {
+    "categories": {
+      "reverse-engineering": {
+        "title": {
+          "en": "Reverse engineering",
+          "zh": "逆向工程"
+        }
+      }
+    },
+    "labels": {
+      "local-first": {
+        "title": {
+          "en": "Local-first",
+          "zh": "本地优先"
+        }
+      },
+      "mcp": {
+        "title": {
+          "en": "MCP",
+          "zh": "MCP"
+        }
+      },
+      "loopback": {
+        "title": {
+          "en": "Loopback-only",
+          "zh": "仅本地"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "@axyatech/dsh-plugin-rea",
+      "title": {
+        "en": "REA for DeepSeek Harness",
+        "zh": "DeepSeek Harness 的 REA"
+      },
+      "description": {
+        "en": "Registers REA’s MCP server, supplies its workflow skill, and adds a live REA panel to the Harness sidebar.",
+        "zh": "注册 REA MCP 服务、提供工作流技能，并在 Harness 侧边栏加入实时 REA 面板。"
+      },
+      "icon": "icon.svg",
+      "author": "Axya Tech",
+      "homepage": "https://github.com/axyatech/rea-harness-plugin#readme",
+      "repository": {
+        "url": "https://github.com/axyatech/rea-harness-plugin"
+      },
+      "metadata": {
+        "category": "reverse-engineering",
+        "keywords": [
+          "rea",
+          "reverse-engineering",
+          "mcp",
+          "sidebar",
+          "deepseek-harness"
+        ],
+        "labels": [
+          "local-first",
+          "mcp",
+          "loopback"
+        ]
+      },
+      "versions": [
+        {
+          "version": "1.1.0",
+          "publishTimestamp": 1792952364,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/axyatech/rea-harness-plugin.git",
+            "commit": "169c9fb0b5161b268715110e31f59ad7cb16c7f3"
+          },
+          "engines": {
+            "dsh": ">=0.2.1-rc.3 <0.3.0-0"
+          }
+        }
+      ]
+    }
+  ]
+}
