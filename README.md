@@ -19,17 +19,30 @@ per-machine launcher path: the first connection downloads the pinned
 
 ## Install
 
+**From the Harness UI:** **Settings → Plugins → Add plugin**, choose the Git
+repository option, and paste:
+
+```text
+https://github.com/axyatech/rea-harness-plugin.git
+```
+
+**From an agent or the `plugin_manager` tool:**
+
+```text
+plugin_manager action=install_bundle target=https://github.com/axyatech/rea-harness-plugin.git
+```
+
+**From a clone:**
+
 ```bash
 git clone https://github.com/axyatech/rea-harness-plugin.git
 plugin_manager action=install_bundle target=/absolute/path/to/rea-harness-plugin
 ```
 
-Or from the Harness UI: **Settings → Plugins → Add**, then point it at the
-cloned package directory (or at a published package name).
-
-The bundle is applied on install; a page refresh loads the sidebar entry. New
-sessions pick up the workflow skill. If the MCP server reports zero tools on
-the first open, wait for the `npx` download and press **Refresh**.
+A published npm package is not required; the Git spec installs this repository
+directly. The bundle is applied on install; a page refresh loads the sidebar
+entry. New sessions pick up the workflow skill. If the MCP server reports zero
+tools on the first open, wait for the `npx` download and press **Refresh**.
 
 ## Privacy and security
 
