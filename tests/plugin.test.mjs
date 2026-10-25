@@ -197,7 +197,8 @@ test('status route is loopback-only, redacted, and reports tools plus skill', as
   assert.equal(local.json.doctor.checks.some((check) => check.name === 'ghidra-platform'), false)
   assert.equal(local.json.doctor.checks.some((check) => check.name === 'registration:dsh'), false)
   assert.deepEqual(local.json.doctor.skillCopies, [{ name: 'identity', ok: false }])
-  assert.deepEqual(local.json.doctor.installations, ['~/rea-bin'])
+  // `join` keeps the separator native: `~\rea-bin` on Windows, `~/rea-bin` elsewhere.
+  assert.deepEqual(local.json.doctor.installations, [join('~', 'rea-bin')])
   assert.equal(local.body.includes(homedir()), false)
 
   const remote = await callRoute(route.handler, { remoteAddress: '203.0.113.5' })
